@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MAMS AI Assistant</title>
+    <style>
+        body {
+            font-family: aria;
+            margin: 40px;
+            background-color: #7d2029;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        h3{
+            color: #ffffff; 
+        }
+
+        p {
+            font-family: minion-pro, Times New Roman, serif;
+        }
+
+        label{
+            font-family: minion-pro, Times New Roman, serif;
+        }
+
+        form {
+            margin-top: 10px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #0074D9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display:block;
+            width: 550px;
+        }
+
+        .output{
+            display:flex;
+            margin-top: 100px;
+            
+        }
+
+        .intro {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            float: right;
+        }
+
+        #area {
+            padding: 1em;
+            padding-left: 0;
+        }
+
+        #question{
+            width: 550px;
+            height: 64px;
+        }
+
+        .form {
+            float: right;
+            display: inline;
+        }
+
+        .typewriter p { /*https://css-tricks.com/snippets/css/typewriter-effect/*/
+            overflow: hidden; /* slowly reveals text */
+            border-right: .15em solid #7d2029; /* The cursor */
+            white-space: nowrap; /* Keeps the content on a single line */
+            margin: 0 auto; /* Scrolling question */
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+            }
+
+        /* The typing effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #7d2029; }
+        }
+
+        .inline{
+            display:inline-block;
+        }
+
+        .pfp{
+            height:64px;
+            width:64px;
+            padding: 1rem;
+            padding-top: 1.5rem;
+            padding-left: 0;
+            float:left;
+        }
+
+        .logo{
+            width: 150px;
+            padding: 1rem;
+        }
+
+        .header{
+            display:flex;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .headerText{
+            display:block;
+        }
+
+        .title{
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="{{ url_for('static', filename='mamsgpt_logo.png') }}">                <div class="headerText">
+            <h3>Meet MAMSgpt!</h3>
+            <h1 class="title">The Official MAMS AI Assistant</h1>
+        </div>
+    </div>
+
+    <div class="inline">
+        <img class="pfp" src="{{ url_for('static', filename='mamsgptPFP.png') }}">        <div class="intro typewriter inline">
+            <p>Welcome! Please enter your area of interest and your question in the box below!</p>
+        </div>
+    </div>
+
+    <form action="/ask" method="post" class="form">
+        <label for="area">Area of Interest:</label>
+        <div id="area">
+            <input type="radio" id="fac" name="area_of_interest" value="Faculty">
+            <label for="fac">Faculty</label><br>
+
+            <input type="radio" id="cur" name="area_of_interest" value="Curriculum">
+            <label for="cur">Curriculum</label><br>
+
+            <input type="radio" id="stu" name="area_of_interest" value="Student Life">
+            <label for="stu">Student Life</label><br>
+
+            <input type="radio" id="adm" name="area_of_interest" value="Admissions">
+            <label for="adm">Admissions</label><br>
+        </div>
+        <label for="question">Your Question:</label>
+        <input type="text" id="question" name="question" required>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if answer %}
+    
+    <div class="output">
+        <img class="pfp" src="{{ url_for('static', filename='mamsgptPFP.png') }}">        <div class="answer">
+            <h2>AI Answer:</h2>
+            <div>
+                <p class="typewriter">{{ answer }}</p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
