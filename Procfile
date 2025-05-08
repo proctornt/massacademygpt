@@ -1,1 +1,1 @@
-web: pip install --no-cache-dir -r requirements.txt && gunicorn app:app
+web: gunicorn app:app --workers=1 --threads=1
