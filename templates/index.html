@@ -66,7 +66,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        .typewriter p {
+        .typewriter p { /*https://css-tricks.com/snippets/css/typewriter-effect/*/
             overflow: hidden;
             border-right: .15em solid #7d2029;
             white-space: nowrap;
@@ -76,12 +76,12 @@
                 blink-caret .75s step-end infinite;
         }
 
-        @keyframes typing {
+        @keyframes typing { /*typing animation*/
             from { width: 0 }
             to { width: 100% }
         }
 
-        @keyframes blink-caret {
+        @keyframes blink-caret { /*typing animation -- blinking caret*/
             from, to { border-color: transparent }
             50% { border-color: #7d2029; }
         }
@@ -101,7 +101,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        input[type="text"] { 
+        input[type="text"] { /*input textbox*/
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -110,7 +110,7 @@
             border-radius: 5px;
         } 
 
-        input[type="submit"] {
+        input[type="submit"] { /*submit button*/
             background-color: #0074D9;
             color: white;
             padding: 10px 20px;
@@ -136,8 +136,8 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <img class="logo" src="{{ url_for('static', filename='mamsgpt_logo.png') }}">
+    <div class="header"> <!--website header-->
+        <img class="logo" src="{{ url_for('static', filename='mamsgpt_logo.png') }}"> <!--https://dulangirathnapala.medium.com/how-to-add-images-to-html-in-a-flask-app-4dbcc92e3aeb-->
         <div class="headerText">
             <h3>Meet MAMSGPT!</h3>
             <h1 class="title">The Official MAMS AI Assistant</h1>
@@ -145,16 +145,16 @@
     </div>
 
     <div class="profile-container">
-        <div class="left-container">
-            <div class="inline">
-                <img class="pfp" src="{{ url_for('static', filename='mamsgptPFP.png') }}">
+        <div class="left-container"> 
+            <div class="inline"> <!--introductory text from bot-->
+                <img class="pfp" src="{{ url_for('static', filename='mamsgptPFP.png') }}"> <!--https://dulangirathnapala.medium.com/how-to-add-images-to-html-in-a-flask-app-4dbcc92e3aeb-->
                 <div class="intro typewriter">
                     <p>Welcome! Please enter your area of interest and your question in the box below!</p>
                 </div>
             </div>
 
-            {% if answer %}
-            <div class="answer">
+            {% if answer %} <!--https://www.geeksforgeeks.org/if-django-template-tags/-->
+            <div class="answer"> <!--AI answer from bot-->
                 <h2>AI Answer:</h2>
                 <p class="typewriter">{{ answer }}</p>
             </div>
@@ -162,10 +162,10 @@
         </div>
 
         <div class="right-container">
-            <form action="/ask" method="post">
+            <form action="/ask" method="post"> <!--user inputted question-->
                 <h2>Question:</h2>
                 <label for="area">Area of Interest:</label>
-                <div id="area">
+                <div id="area"> <!--radio buttons indicating area of interest-->
                     <input type="radio" id="fac" name="area_of_interest" value="Faculty">
                     <label for="fac">Faculty</label><br>
 
@@ -179,7 +179,7 @@
                     <label for="adm">Admissions</label><br>
                 </div>
                 <br>
-                <label for="question">Your Question:</label>
+                <label for="question">Your Question:</label> <!--user inputted text-->
                 <input type="text" id="question" name="question" required>
                 <input type="submit" value="Submit">
             </form>
