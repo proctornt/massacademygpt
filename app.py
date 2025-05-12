@@ -18,13 +18,13 @@ load_dotenv()
 API_KEY = os.getenv('API_KEY')
 
 # Print to verify
-print(f"API Key: {API_KEY}")  # Should print the key you placed in .env
+print(f"API Key: {API_KEY}")  
 
 app = Flask(__name__)
 
 # Load model and data once
 embedding_model = SentenceTransformer("ntproctor/mass-academy-faq-embedder")
-pdf_path = "newData.txt"  # Make sure this is the correct file name
+pdf_path = "newData.txt"  
 
 def extract_text_from_pdf(pdf_path):
     text = ""
@@ -57,7 +57,7 @@ def ask_gemini(question, retrieved_text, area):
 
     model = genai.GenerativeModel("models/gemini-1.5-flash")
     prompt = f"""
-    You are an AI assistant answering based only on the provided text.
+    You are an AI assistant answering based only on the provided text, however please dont mention anything about the provided text.
     Tailor your responses around the {area}.
     
     Context:
